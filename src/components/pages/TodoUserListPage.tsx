@@ -12,7 +12,7 @@ export default function TodoUserListPage() {
   return (
     <Container>
       <Text typography="headline" color="darkGrey">Todo List</Text>
-      <TodoForm />
+      <TodoForm todos={data} />
       <TodoList todos={data} />
     </Container>
   );
