@@ -8,7 +8,8 @@ import {
   useDeleteTodoMutation,
   useUpdateTodoMutation,
 } from "../../apis/todos.mutate";
-import { CheckIcon, CloseIcon } from '../../assets/icons';
+import { Text } from '../../ui/text';
+import TodoForm from '../features/TodoForm';
 
 export default function TodoUserListPage() {
   const { data } = useTodoQuery();
@@ -28,7 +29,8 @@ export default function TodoUserListPage() {
 
   return (
     <Container>
-      <Heading>Todo List</Heading>
+      <Text typography="headline" color="darkGrey">Todo List</Text>
+      <TodoForm />
       <TodoList todos={data} />
       <button type="button" onClick={handleClickCreate}>
         todo 생성 테스트
@@ -39,9 +41,15 @@ export default function TodoUserListPage() {
       <button type="button" onClick={handleClickDelete}>
         todo 삭제 테스트 (첫번째 todo done으로)
       </button>
-    </Container>
+
+    </Container >
   );
 }
 
-const Heading = styled.h1``;
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 128px calc((100% - 737px) / 2);
+`;

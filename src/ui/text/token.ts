@@ -2,56 +2,32 @@ export const vars = {
   $semantic: {
     typography: {
       headline: `
-        font-family: 'Pretendard', sans-serif;
-        font-weight: 700;
+        font-family: Pretendard;
         font-size: 56px;
-        line-height: 2px;
-        color: #333333;
+        font-weight: 700;
+        line-height: 72px;
       `,
       bodyPrimary: `
-        font-family: 'Pretendard', sans-serif;
-        font-weight: 400;
+        font-family: Pretendard;
         font-size: 20px;
+        font-weight: 400;
         line-height: 28px;
-        color: #B9B9B9;
       `,
       bodySecondary: `
-        font-family: 'Pretendard', sans-serif;
+        font-family: Pretendard;
         font-weight: 600;
         font-size: 16px;
         line-height: 24px;
-        color: #2182F3;
-      `,
-      bodyTertiary: `
-        font-family: 'Pretendard', sans-serif;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 24px;
-        color: #454545;
-      `,
-      captionPrimary: `
-        font-family: 'Pretendard', sans-serif;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 28px;
-        color: #000000;
-      `,
-      captionSecondary: `
-        font-family: 'Pretendard', sans-serif;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 28px;
-        color: #868686;
       `,
     },
     color: {
       text: {
-        headline: '#333333',
-        bodyPrimary: '#B9B9B9',
-        bodySecondary: '#2182F3',
-        bodyTertiary: '#454545',
-        captionPrimary: '#000000',
-        captionSecondary: '#868686',
+        darkGrey: '#333333',
+        lightGrey: '#B9B9B9',
+        mediumGrey: '#454545',
+        primary: '#2182F3',
+        black: '#000000',
+        mutedGrey: '#868686',
       },
     },
   },

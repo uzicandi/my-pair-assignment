@@ -4,6 +4,7 @@ export const resetCss = css`
   html {
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
+    background-color: #efefef;
   }
 
   body {
@@ -23,6 +24,10 @@ export const resetCss = css`
     box-sizing: content-box;
     height: 0;
     overflow: visible;
+  }
+
+  div {
+    box-sizing: border-box;
   }
 
   pre {
