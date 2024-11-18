@@ -19,3 +19,7 @@ https://velog.io/@ire4564/Test-next.js-msw-jest%EB%A1%9C-TDD-%EC%8B%9C%EB%8F%84%
 
 1. svgr을 사용해 svg 파일 컴포넌트화
    webpack이 코드를 build할 때 svg 파일을 자동으로 리액트 컴포넌트화 해줍니다.
+
+2. Text를 공통컴포넌트화 하여 개발에 용이하게 추가
+
+3. UI 컴포넌트 추가
