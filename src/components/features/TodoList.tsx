@@ -3,13 +3,22 @@ import { TypeTodo } from "../../apis/todos.interface";
 import styled from "@emotion/styled";
 import Todo from "./Todo";
 import { Text } from '../../ui/text';
+import TabGroup, { TabType } from '../ui/Tab';
+import { useDeleteTodoMutation, useUpdateTodoMutation } from '../../apis/todos.mutate';
 
 interface TodoListProps {
   todos: TypeTodo[];
 }
 
 export default function TodoList({ todos }: TodoListProps) {
-  const [tab, setTab] = useState<"ALL" | "TODO" | "DONE">("ALL");
+  const [tab, setTab] = useState<TabType>("ALL");
+
+  const handleTabClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setTab(e.currentTarget.value as TabType);
+  }
+
+  const { mutate: updateMutate } = useUpdateTodoMutation();
+  const { mutate: deleteMutate } = useDeleteTodoMutation();
 
   const filteredTodos = useMemo(
     () =>
@@ -22,22 +31,23 @@ export default function TodoList({ todos }: TodoListProps) {
     [tab, todos]
   );
 
-  const handleTabClick = (e) => {
-    setTab(e.target.value);
+  const handleUpdateClick = (todo: TypeTodo) => {
+    const { id, state, content } = todo;
+    updateMutate({ id, state: state === 'DONE' ? 'TODO' : 'DONE', content });
+  };
+
+  const handleCloseClick = (todo: TypeTodo) => {
+    deleteMutate(todo.id);
   }
 
   return (
     <Container>
-      <TabGroup>
-        <TabItem onClick={handleTabClick} selected={tab === 'ALL'} value={'ALL'}>All</TabItem>
-        <TabItem onClick={handleTabClick} selected={tab === 'TODO'} value={'TODO'}>To Do</TabItem>
-        <TabItem onClick={handleTabClick} selected={tab === 'DONE'} value={'DONE'}>Done</TabItem>
-      </TabGroup>
+      <TabGroup onClick={handleTabClick} tab={tab} />
       <TotalCount typography="bodyPrimary" color="black">총 3개</TotalCount>
       <TodoItemWrapper>
         {filteredTodos.map((todo) => (
           <TodoItem key={todo.id}>
-            <Todo todo={todo} />
+            <Todo todo={todo} onUpdate={() => handleUpdateClick(todo)} onDelete={() => handleCloseClick(todo)} />
           </TodoItem>
         ))}
       </TodoItemWrapper>
@@ -67,17 +77,3 @@ const TodoItem = styled.li`
   padding: 32px 16px;
 `;
 
-const TabItem = styled.button<{ selected: boolean }>`
-  height: 40px;
-  border-radius: 12px;
-  padding: 8px 32px;
-  background-color: ${({ selected }) => selected ? '#EBF4FF' : '#fff'};
-  color: ${({ selected }) => selected ? '#2182F3' : '#454545'};
-  align-items: center;
-  display: flex;
-`;
-
-const TabGroup = styled.div`
-  display: flex;
-  justify-content: center;
-`;
