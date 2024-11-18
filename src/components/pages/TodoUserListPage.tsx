@@ -8,6 +8,7 @@ import {
   useDeleteTodoMutation,
   useUpdateTodoMutation,
 } from "../../apis/todos.mutate";
+import { CheckIcon, CloseIcon } from '../../assets/icons';
 
 export default function TodoUserListPage() {
   const { data } = useTodoQuery();
