@@ -1,3 +1,5 @@
+'use client';
+
 import { vars } from './token';
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';

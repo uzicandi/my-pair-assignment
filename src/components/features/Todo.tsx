@@ -3,7 +3,6 @@ import { TypeTodo } from "../../apis/todos.interface";
 import { CloseIcon } from '../../assets/icons';
 import FieldCheckbox from '../ui/Field/Checkbox';
 import { Text } from '../../ui/text';
-import { useDeleteTodoMutation } from '../../apis/todos.mutate';
 
 interface TodoProps {
   todo: TypeTodo;

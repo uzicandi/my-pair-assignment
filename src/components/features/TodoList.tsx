@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo, useState } from "react";
 import { TypeTodo } from "../../apis/todos.interface";
 import styled from "@emotion/styled";
@@ -43,7 +45,7 @@ export default function TodoList({ todos }: TodoListProps) {
   return (
     <Container>
       <TabGroup onClick={handleTabClick} tab={tab} />
-      <TotalCount typography="bodyPrimary" color="black">총 3개</TotalCount>
+      <TotalCount typography="bodyPrimary" color="black">총 {todos.length}개</TotalCount>
       <TodoItemWrapper>
         {filteredTodos.map((todo) => (
           <TodoItem key={todo.id}>

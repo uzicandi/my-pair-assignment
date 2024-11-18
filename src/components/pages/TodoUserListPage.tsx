@@ -3,11 +3,6 @@ import React from "react";
 import styled from "@emotion/styled";
 import { useTodoQuery } from "../../apis/todos.query";
 import TodoList from "../features/TodoList";
-import {
-  useCreateTodoMutation,
-  useDeleteTodoMutation,
-  useUpdateTodoMutation,
-} from "../../apis/todos.mutate";
 import { Text } from '../../ui/text';
 import TodoForm from '../features/TodoForm';
 
@@ -19,7 +14,7 @@ export default function TodoUserListPage() {
       <Text typography="headline" color="darkGrey">Todo List</Text>
       <TodoForm />
       <TodoList todos={data} />
-    </Container >
+    </Container>
   );
 }
 

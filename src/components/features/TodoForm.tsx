@@ -1,3 +1,5 @@
+'use client';
+
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useCreateTodoMutation } from '../../apis/todos.mutate';
@@ -11,6 +13,7 @@ export default function TodoForm() {
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     createMutate({ state: "TODO", content: value });
     setValue("");
   }

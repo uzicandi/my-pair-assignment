@@ -1,4 +1,4 @@
-import { memoryTodo } from "../../../server/memory-todo";
+import { memoryTodo } from '../../../server/memory-todo';
 
 async function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -14,8 +14,5 @@ export async function POST(req: Request) {
   const target = { id, ...data };
 
   memoryTodo.push(target);
-
-  await sleep(1000);
-
   return Response.json(target);
 }
