@@ -1,30 +1,26 @@
 import styled from "@emotion/styled";
 import { TypeTodo } from "../../apis/todos.interface";
-import { CheckIcon, CloseIcon } from '../../assets/icons';
-import { useState } from 'react';
+import { CloseIcon } from '../../assets/icons';
 import FieldCheckbox from '../ui/Field/Checkbox';
 import { Text } from '../../ui/text';
 
 interface TodoProps {
   todo: TypeTodo;
+  onUpdate: (todo: TypeTodo) => void;
+  onDelete: (todo: TypeTodo) => void;
 }
 
-export default function Todo({ todo }: TodoProps) {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
-
-  const handleCloseClick = () => { }
+export default function Todo({ todo, onUpdate, onDelete }: TodoProps) {
+  const isDone = todo.state === 'DONE';
+  const textColor = isDone ? "mutedGrey" : "black";
 
   return (
     <Container>
       <LeftContent>
-        <FieldCheckbox checked={isChecked} onChange={handleCheckboxChange} />
-        <Text typography="bodySecondary" color={isChecked ? "mutedGrey" : "black"}>{todo.content}</Text>
+        <FieldCheckbox checked={isDone} onChange={() => onUpdate(todo)} />
+        <Text typography="bodySecondary" color={textColor}>{todo.content}</Text>
       </LeftContent>
-      <StyledCloseIcon onClick={handleCloseClick} />
+      <StyledCloseIcon onClick={onDelete} />
     </Container>
   );
 }

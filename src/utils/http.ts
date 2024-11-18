@@ -1,7 +1,7 @@
-import ky from "ky";
+import ky from 'ky';
 
 const instance = ky.create({
-  prefixUrl: "http://localhost:3000",
+  prefixUrl: 'http://localhost:8080',
 });
 
 const http = {
