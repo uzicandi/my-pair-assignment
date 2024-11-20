@@ -32,9 +32,9 @@ export default function TodoForm({ todos }: TodoFormProps) {
 
   return (
     <Container>
-      <SearchForm onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <SearchInput type="text" value={value} onChange={handleChange} placeholder='할 일을 입력해 주세요' maxLength={20} />
-      </SearchForm>
+      </form>
     </Container>
   )
 }

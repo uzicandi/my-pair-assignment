@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { ComponentPropsWithoutRef } from "react";
-import { CheckIcon } from '../../../assets/icons';
+import { CheckIcon } from "../../../assets/icons";
 
 type FieldCheckboxProps = Omit<ComponentPropsWithoutRef<"input">, "type">;
 
@@ -10,16 +10,15 @@ export default function FieldCheckbox({ ...props }: FieldCheckboxProps) {
       <Checkbox type="checkbox" {...props} />
       <CheckIcon />
     </CheckboxContainer>
-  )
+  );
 }
 
 const CheckboxContainer = styled.label`
   display: flex;
   align-items: center;
-  cursor: pointer; 
+  cursor: pointer;
   position: relative;
 `;
-
 
 const Checkbox = styled.input`
   appearance: none;
@@ -27,13 +26,13 @@ const Checkbox = styled.input`
   height: 32px;
   border-radius: 50%;
   border: 1px solid #e5e5e5;
-  position: relative; 
+  position: relative;
   + svg {
     display: none;
   }
 
   &:checked {
-    background-color: #2182F3;
+    background-color: #2182f3;
     border: none;
 
     & + svg {
@@ -47,11 +46,10 @@ const Checkbox = styled.input`
   }
 `;
 
+const StyledCheckIcon = styled(CheckIcon)`
+  display: none;
 
-// const StyledCheckIcon = styled(CheckIcon)`
-//   display: none;
-
-//   ${Checkbox}:checked + & {
-//     display: block;
-//   }
-// `;
+  ${Checkbox}:checked + & {
+    display: block;
+  }
+`;

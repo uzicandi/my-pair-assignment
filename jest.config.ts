@@ -10,6 +10,10 @@ const createJestConfig = nextJest({
 const customJestConfig: Config = {
   testEnvironment: "jest-environment-jsdom",
   verbose: true,
+  transform: {},
+  moduleNameMapper: {
+    "^.+\\.(svg)$": "<rootDir>/src/mocks/svgrMock.tsx",
+  },
 };
 
 module.exports = createJestConfig(customJestConfig);

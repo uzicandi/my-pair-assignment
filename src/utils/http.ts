@@ -1,7 +1,7 @@
-import ky from 'ky';
+import axios from "axios";
 
-const instance = ky.create({
-  prefixUrl: 'http://localhost:8080',
+const instance = axios.create({
+  baseURL: "http://localhost:8080",
 });
 
 const http = {
