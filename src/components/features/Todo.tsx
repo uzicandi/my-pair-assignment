@@ -22,7 +22,9 @@ export default function Todo({ todo, onUpdate, onDelete }: TodoProps) {
           {todo.content}
         </Text>
       </LeftContent>
-      <StyledCloseIcon onClick={onDelete} />
+      <StyledCloseIconButton onClick={() => onDelete(todo)} aria-label="delete">
+        <StyledCloseIcon />
+      </StyledCloseIconButton>
     </Container>
   );
 }
@@ -37,12 +39,25 @@ const Container = styled.div`
 const LeftContent = styled.div`
   display: flex;
   gap: 16px;
-  align-items: center; // 세로 정렬
+  align-items: center;
+`;
+
+const StyledCloseIconButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const StyledCloseIcon = styled(CloseIcon)`
   fill: #b9b9b9;
   width: 14px;
   height: 14px;
-  cursor: pointer;
 `;

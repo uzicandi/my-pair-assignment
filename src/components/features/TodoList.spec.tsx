@@ -3,7 +3,6 @@ import "@testing-library/jest-dom";
 import TodoList from "./TodoList";
 import QueryProvider from "../provider/QueryProvider";
 import { mockTodos } from "../../mocks/data/todos";
-// import userEvent from "@testing-library/user-event";
 import { matchers } from "@emotion/jest";
 
 expect.extend(matchers);
