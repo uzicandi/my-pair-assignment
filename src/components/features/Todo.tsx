@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { TypeTodo } from "../../apis/todos.interface";
 import { CloseIcon } from "../../assets/icons";
 import FieldCheckbox from "../ui/Field/Checkbox";
-import { Text } from "../../ui/text";
+import { Text } from "../ui/Text";
 
 interface TodoProps {
   todo: TypeTodo;

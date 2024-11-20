@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { TypeTodo } from "../../apis/todos.interface";
 import styled from "@emotion/styled";
 import Todo from "./Todo";
-import { Text } from '../../ui/text';
+import { Text } from '../ui/Text';
 import TabGroup, { TabType } from '../ui/Tab';
 import { useDeleteTodoMutation, useUpdateTodoMutation } from '../../apis/todos.mutate';
 

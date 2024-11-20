@@ -4,13 +4,17 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { matchers } from "@emotion/jest";
 import QueryProvider from '../provider/QueryProvider';
-import TodoList from './TodoList';
+import TodoList from '../features/TodoList';
 import remote from '../../mocks/barrel';
 expect.extend(matchers);
 
 describe("TodoForm", () => {
-  test("새로운 투두 추가 테스트", async () => {
-    const createSpy = jest.spyOn(remote, 'createTodo').mockResolvedValue({ id: 2, state: "TODO", content: "새로운 할 일" });
+  test("새로운 리스트가 추가되는지 확인합니다.", async () => {
+    const createSpy = jest.spyOn(remote, 'createTodo').mockImplementation(() => Promise.resolve({
+      id: 2,
+      state: "TODO",
+      content: "새로운 할 일"
+    }));
     userEvent.setup();
 
     const mockTodos = [{ id: 1, state: "TODO" as any, content: "기존 할 일" }];
@@ -24,17 +28,23 @@ describe("TodoForm", () => {
 
     await userEvent.type(screen.getByRole("textbox"), "새로운 할 일");
     await userEvent.keyboard("[Enter]");
-    await userEvent
 
-    await createSpy;
+    render(
+      <QueryProvider>
+        <TodoForm todos={mockTodos} />
+        <TodoList todos={mockTodos} />
+      </QueryProvider>
+    );
 
     await waitFor(() => {
       const todoItems = screen.getAllByRole('listitem');
       expect(todoItems).toHaveLength(2); // 기존 1개 + 새로운 할 일 1개
     });
+
+    await createSpy.mockClear();
   });
 
-  test("입력값이 20자까지만 제한되는지 테스트", async () => {
+  test("입력값이 20자까지만 제한되는지 테스트합니다.", async () => {
     const user = userEvent.setup();
     const mockTodos = [{ id: 1, state: "TODO" as any, content: "기존 할 일" }];
 
@@ -49,8 +59,8 @@ describe("TodoForm", () => {
     expect(input).toHaveValue("12345678901234567890");
   });
 
-  test("완료되지 않은 할 일이 10개 이상일 때 알림 메시지를 표시하는지 테스트", async () => {
-    jest.spyOn(window, 'alert').mockImplementation(() => { });
+  test("완료되지 않은 할 일이 10개 이상일 때 알림 메시지를 표시하는지 테스트합니다.", async () => {
+    jest.spyOn(window, 'alert').mockImplementation();
 
     const mockTodos = Array.from({ length: 10 }, (_, i) => ({
       id: i + 1,
