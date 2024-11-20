@@ -1,6 +1,9 @@
 import ky from 'ky';
+import kyUniversal from 'ky-universal';
 
-const instance = ky.create({
+const targetKy = typeof window === 'undefined' ? kyUniversal : ky;
+
+const instance = targetKy.create({
   prefixUrl: 'http://localhost:8080',
 });
 
