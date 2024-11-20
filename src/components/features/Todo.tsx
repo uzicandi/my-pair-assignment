@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { TypeTodo } from "../../apis/todos.interface";
-import { CloseIcon } from '../../assets/icons';
-import FieldCheckbox from '../ui/Field/Checkbox';
-import { Text } from '../../ui/text';
+import { CloseIcon } from "../../assets/icons";
+import FieldCheckbox from "../ui/Field/Checkbox";
+import { Text } from "../../ui/text";
 
 interface TodoProps {
   todo: TypeTodo;
@@ -11,14 +11,16 @@ interface TodoProps {
 }
 
 export default function Todo({ todo, onUpdate, onDelete }: TodoProps) {
-  const isDone = todo.state === 'DONE';
+  const isDone = todo.state === "DONE";
   const textColor = isDone ? "mutedGrey" : "black";
 
   return (
     <Container>
       <LeftContent>
         <FieldCheckbox checked={isDone} onChange={() => onUpdate(todo)} />
-        <Text typography="bodySecondary" color={textColor}>{todo.content}</Text>
+        <Text typography="bodySecondary" color={textColor}>
+          {todo.content}
+        </Text>
       </LeftContent>
       <StyledCloseIcon onClick={onDelete} />
     </Container>
@@ -39,7 +41,7 @@ const LeftContent = styled.div`
 `;
 
 const StyledCloseIcon = styled(CloseIcon)`
-  fill: #B9B9B9;
+  fill: #b9b9b9;
   width: 14px;
   height: 14px;
   cursor: pointer;

@@ -1,16 +1,19 @@
-import type { Config } from 'jest';
+import type { Config } from "jest";
 
-const nextJest = require('next/jest');
+const nextJest = require("next/jest");
 
 const createJestConfig = nextJest({
   // next.config.js 및 .env 파일을 로드할 Next.js 앱의 경로
-  dir: './',
+  dir: "./",
 });
 
 const customJestConfig: Config = {
-  testEnvironment: 'jest-environment-jsdom',
+  testEnvironment: "jest-environment-jsdom",
   verbose: true,
   transform: {},
+  moduleNameMapper: {
+    "^.+\\.(svg)$": "<rootDir>/src/mocks/svgrMock.tsx",
+  },
 };
 
 module.exports = createJestConfig(customJestConfig);

@@ -1,10 +1,7 @@
-import ky from 'ky';
-import kyUniversal from 'ky-universal';
+import axios from "axios";
 
-const targetKy = typeof window === 'undefined' ? kyUniversal : ky;
-
-const instance = targetKy.create({
-  prefixUrl: 'http://localhost:8080',
+const instance = axios.create({
+  baseURL: "http://localhost:8080",
 });
 
 const http = {

@@ -1,30 +1,30 @@
-import http from '../utils/http';
-import { TypeCreateTodo, TypeTodo } from './todos.interface';
+import http from "../utils/http";
+import { TypeCreateTodo, TypeTodo } from "./todos.interface";
 
 export const getTodos = async () => {
-  const res = await http.get<TypeTodo[]>('todos');
+  const { data } = await http.get<TypeTodo[]>("todos");
 
-  return res.json();
+  return data;
 };
 
-export const createTodo = async (data: TypeCreateTodo) => {
-  const res = await http.post<TypeTodo>('todos', {
+export const createTodo = async (form: TypeCreateTodo) => {
+  const { data } = await http.post<TypeTodo>("todos", {
     json: {
       id: new Date().getTime(),
-      ...data,
+      ...form,
     },
   });
-  return res.json();
+  return data;
 };
 
-export const updateTodo = async (data: TypeTodo) => {
-  const res = await http.put<TypeTodo>(`todos/${data.id}`, { json: data });
+export const updateTodo = async (form: TypeTodo) => {
+  const { data } = await http.put<TypeTodo>(`todos/${form.id}`, { json: form });
 
-  return res.json();
+  return data;
 };
 
 export const deleteTodo = async (id: number) => {
-  const res = await http.delete<TypeTodo>(`todos/${id}`);
+  const { data } = await http.delete<TypeTodo>(`todos/${id}`);
 
-  return res.json();
+  return data;
 };
